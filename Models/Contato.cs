@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using pessoa_service.Enums;
 
 namespace pessoa_service.Models
@@ -12,6 +13,8 @@ namespace pessoa_service.Models
         public string Telefone { get; set; } = string.Empty;
         public ETipoContato TipoContato { get; set; } = ETipoContato.Outro;
         public int PessoaId { get; set; }
+        
+        [JsonIgnore]
         public Pessoa? Pessoa { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

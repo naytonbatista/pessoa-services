@@ -15,7 +15,7 @@ Este arquivo descreve as características do projeto `pessoa-service`, oferecend
 - `Models/`: entidades de domínio (`Pessoa`, `Contato`).
 - `Enums/`: enums de apoio (`ETipoContato`).
 - `Extensions/`: classes de extensão para configuração modular (`ApiExtensions`, `EndpointsExtensions`, `SwaggerExtensions`, `DIExtensions`).
-- `Features/`: endpoints organizados por feature (`Pessoas/`, `Contatos/`).
+- `Features/`: endpoints organizados por feature (`Pessoas/` com `PessoaEndpoints.cs`, `PessoaRequest.cs`, `PessoaMapper.cs`; `Contatos/` com `ContatoEndpoints.cs`, `ContatoRequest.cs`, `ContatoMapper.cs`).
 - `Abstractions/`: interfaces e contratos (`IEndpoint`).
 - `Data/`: contexto do Entity Framework e mapeamentos (`AppDbContext`, `Mappings/`).
 - `bin/` e `obj/`: artefatos de build gerados automaticamente.
@@ -43,6 +43,22 @@ Este arquivo descreve as características do projeto `pessoa-service`, oferecend
   - `UpdatedAt` (DateTime) padrão UTC now
 - `Enums/ETipoContato.cs`:
   - `Residencial`, `Comercial`, `Celular`, `Emergencia`, `Outro`
+
+## 3. DTOs (Data Transfer Objects)
+- `Features/Pessoas/PessoaRequest.cs`:
+  - `Nome` (string)
+  - `Email` (string)
+  - `Telefone` (string)
+  - `DataNascimento` (DateTime)
+  - `Ativo` (bool) padrão true
+- `Features/Pessoas/PessoaMapper.cs`: métodos de mapeamento entre `PessoaRequest` ↔ `Pessoa`
+- `Features/Contatos/ContatoRequest.cs`:
+  - `Nome` (string)
+  - `Email` (string)
+  - `Telefone` (string)
+  - `TipoContato` (`ETipoContato`)
+  - `PessoaId` (int)
+- `Features/Contatos/ContatoMapper.cs`: métodos de mapeamento entre `ContatoRequest` ↔ `Contato`
 
 ## 4. Configuração e execução
 - API minimal em `Program.cs` com endpoints CRUD para `Pessoa` e `Contato`.

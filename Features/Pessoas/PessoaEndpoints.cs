@@ -2,11 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using pessoa_service.Data;
 using pessoa_service.Models;
 
+using pessoa_service.Abstractions;
+
 namespace pessoa_service.Features.Pessoas
 {
-    public static class PessoaEndpoints
+    public class PessoaEndpoints : IEndpoint
     {
-        public static void MapPessoaEndpoints(this WebApplication app)
+        public void MapEndpoints(IEndpointRouteBuilder app)
         {
             app.MapGet("/pessoas", async (AppDbContext db) =>
                 await db.Pessoas.Include(p => p.Contatos).ToListAsync());

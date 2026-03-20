@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using pessoa_service.Abstractions;
 using pessoa_service.Data;
 using pessoa_service.Models;
 
 namespace pessoa_service.Features.Contatos
 {
-    public static class ContatoEndpoints
+    public class ContatoEndpoints : IEndpoint
     {
-        public static void MapContatoEndpoints(this WebApplication app)
+        public void MapEndpoints(IEndpointRouteBuilder app)
         {
             app.MapGet("/contatos", async (AppDbContext db) =>
                 await db.Contatos.Include(c => c.Pessoa).ToListAsync());

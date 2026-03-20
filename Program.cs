@@ -5,6 +5,7 @@ using pessoa_service.Features.Contatos;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiConfigurations(builder.Configuration);
+builder.Services.AddEndpoints();
 
 var app = builder.Build();
 

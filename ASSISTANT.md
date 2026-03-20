@@ -14,6 +14,10 @@ Este arquivo descreve as características do projeto `pessoa-service`, oferecend
 - `Properties/launchSettings.json`: perfis de execução local (IIS Express, Projeto).
 - `Models/`: entidades de domínio (`Pessoa`, `Contato`).
 - `Enums/`: enums de apoio (`ETipoContato`).
+- `Extensions/`: classes de extensão para configuração modular (`ApiExtensions`, `EndpointsExtensions`, `SwaggerExtensions`, `DIExtensions`).
+- `Features/`: endpoints organizados por feature (`Pessoas/`, `Contatos/`).
+- `Abstractions/`: interfaces e contratos (`IEndpoint`).
+- `Data/`: contexto do Entity Framework e mapeamentos (`AppDbContext`, `Mappings/`).
 - `bin/` e `obj/`: artefatos de build gerados automaticamente.
 
 ## 3. Modelos de domínio atuais
@@ -41,31 +45,52 @@ Este arquivo descreve as características do projeto `pessoa-service`, oferecend
   - `Residencial`, `Comercial`, `Celular`, `Emergencia`, `Outro`
 
 ## 4. Configuração e execução
-- API minimal em `Program.cs` atualmente apenas responde `GET /` com `Hello World!`.
+- API minimal em `Program.cs` com endpoints CRUD para `Pessoa` e `Contato`.
+- **Swagger/OpenAPI**: Documentação interativa disponível em `/swagger` (ambiente de desenvolvimento).
 - Comandos básicos:
   - `dotnet restore`
   - `dotnet build`
   - `dotnet run`
   - `dotnet test` (projeto de testes não existente ainda)
 
-## 5. Dependências e pacotes
+## 5. Endpoints da API
+### Pessoa
+- `GET /pessoas` - Lista todas as pessoas com contatos
+- `GET /pessoas/{id}` - Obtém pessoa específica por ID
+- `POST /pessoas` - Cria nova pessoa
+- `PUT /pessoas/{id}` - Atualiza pessoa existente
+- `DELETE /pessoas/{id}` - Remove pessoa
+
+### Contato
+- `GET /contatos` - Lista todos os contatos com pessoa
+- `GET /contatos/{id}` - Obtém contato específico por ID
+- `POST /contatos` - Cria novo contato
+- `PUT /contatos/{id}` - Atualiza contato existente
+- `DELETE /contatos/{id}` - Remove contato
+
+## 6. Dependências e pacotes
 - .NET 9.0
+- Entity Framework Core 9.0.0 (ORM)
+- Npgsql.EntityFrameworkCore.PostgreSQL 9.0.0 (PostgreSQL provider)
+- Microsoft.EntityFrameworkCore.Design 9.0.0 (EF Core tools)
+- Scrutor 4.0.0 (Dependency injection scanning)
+- Swashbuckle.AspNetCore 7.0.0 (Swagger/OpenAPI)
 - Dependências gerenciadas em `pessoa-service.csproj`
 
-## 6. Boas práticas e contribuição
+## 7. Boas práticas e contribuição
 - Manter dados sensíveis fora do repositório, preferir variáveis de ambiente.
 - Adicionar e versionar `README`/documentação de API ao evoluir.
 - Implementar testes unitários/integrados antes de PR.
 - Manter consistência de nomenclatura (camelCase, PascalCase) e regras de estilo .NET.
 
-## 7. Próximos passos sugeridos
+## 8. Próximos passos sugeridos
 - Adicionar persistência (EF Core, SQLite/PostgreSQL, etc.).
 - Implementar endpoints CRUD para `Pessoa` e `Contato`.
 - Adicionar validações de entrada (DataAnnotations ou FluentValidation).
 - Implementar migrations e seed de dados.
 - Adicionar testes automatizados e CI.
 
-## 8. Observações
+## 9. Observações
 - Projeto em estágio inicial e minimalista.
 - Modelo `Pessoa` já inclui cálculo de idade e campos de auditoria básicos.
 - Expandir camada de serviço / repositório para adoção em produção.

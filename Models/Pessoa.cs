@@ -14,6 +14,8 @@ namespace pessoa_service.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
+        public ICollection<Contato> Contatos { get; set; } = new List<Contato>();
+
         public int Idade => CalcularIdade();
 
         #endregion

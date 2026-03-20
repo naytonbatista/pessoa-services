@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using pessoa_service.Configurations;
 using pessoa_service.Data;
 using pessoa_service.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddApiConfigurations(builder.Configuration);
 
 var app = builder.Build();
 

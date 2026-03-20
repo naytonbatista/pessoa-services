@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using pessoa_service.Data;
 
-namespace pessoa_service.Configurations
+namespace pessoa_service.Extensions
 {
     public static class ApiConfig
     {

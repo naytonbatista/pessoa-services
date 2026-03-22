@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pessoa-service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b5472fbe61794d72c01c2bf08b9793ebd24d3a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("pessoa-service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pessoa-service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

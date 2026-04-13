@@ -1,8 +1,10 @@
+using MediatR;
+
 namespace PessoaService.Application.Features.Pessoas.CriarPessoa;
 
-public sealed class CriarPessoaHandler
+public sealed class CriarPessoaHandler: IRequestHandler<CriarPessoaCommand, Unit>
 {
-    public Task<CriarPessoaCommand> HandleAsync(CriarPessoaCommand command,CancellationToken cancellationToken = default)
+    public async Task<Unit> Handle(CriarPessoaCommand command, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(command);
         cancellationToken.ThrowIfCancellationRequested();
@@ -16,13 +18,8 @@ public sealed class CriarPessoaHandler
         if (string.IsNullOrWhiteSpace(command.Telefone))
             throw new ArgumentException("O telefone da pessoa e obrigatorio.", nameof(command));
 
-        var normalizedCommand = command with
-        {
-            Nome = command.Nome.Trim(),
-            Email = command.Email.Trim(),
-            Telefone = command.Telefone.Trim()
-        };
+        
 
-        return Task.FromResult(normalizedCommand);
+        return Unit.Value;
     }
 }

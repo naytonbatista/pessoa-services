@@ -1,5 +1,6 @@
 using pessoa_service.Abstractions;
-using pessoa_service.Data;
+using pessoa_service.Features.Pessoas;
+using MediatR;
 
 namespace pessoa_service.Features.Pessoas.CriarPessoa;
 
@@ -7,14 +8,13 @@ public class Endpoint : IEndpoint
 {
     public void MapEndpoints(IEndpointRouteBuilder app)
     {
-        app.MapPost("/pessoas", async (CriarPessoaRequest request, AppDbContext db) =>
+        app.MapPost("/pessoas", async (CriarPessoaRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
-            var pessoa = request.ToEntity();
+            var command = PessoaMapper.Parse(request);
 
-            db.Pessoas.Add(pessoa);
-            await db.SaveChangesAsync();
+            await sender.Send(command, cancellationToken);
 
-            return Results.Created($"/pessoas/{pessoa.Id}", pessoa.ToCriarPessoaResponse());
+            return Results.Ok();
         });
     }
 }

@@ -3,9 +3,11 @@ using MediatR;
 namespace PessoaService.Application.Features.Pessoas.CriarPessoa;
 
 public sealed record CriarPessoaCommand (
-    string Nome,
-    string Email,
-    string Telefone,
+    string NomeCompleto,
     DateTime DataNascimento,
-    bool Ativo = true
-):IRequest<Unit>;
+    string CPF,
+    string RG,
+    string Sexo,
+    string EstadoCivil,
+    string Nacionalidade
+):IRequest<Guid>;

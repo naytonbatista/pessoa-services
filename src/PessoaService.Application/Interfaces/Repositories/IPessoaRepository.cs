@@ -1,5 +1,7 @@
 using PessoaService.Domain.Entities;
 
+namespace PessoaService.Application.Interfaces.Repositories;
+
 public interface IPessoaRepository
 {
     Task AdicionarAsync(Pessoa pessoa, CancellationToken cancellationToken = default);

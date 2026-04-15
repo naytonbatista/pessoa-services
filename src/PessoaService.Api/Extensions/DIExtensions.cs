@@ -1,6 +1,3 @@
-using MediatR;
-using Scrutor;
-
 namespace pessoa_service.Extensions
 {
     public static class DIExtensions

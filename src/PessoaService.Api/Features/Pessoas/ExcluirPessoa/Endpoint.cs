@@ -1,6 +1,5 @@
 using pessoa_service.Abstractions;
-using pessoa_service.Data;
-
+using PessoaService.Infrastructure.Persistence.Context;
 namespace pessoa_service.Features.Pessoas.ExcluirPessoa;
 
 public class Endpoint : IEndpoint

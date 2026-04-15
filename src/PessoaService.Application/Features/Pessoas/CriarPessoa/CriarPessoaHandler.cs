@@ -1,25 +1,21 @@
 using MediatR;
+using PessoaService.Application.Interfaces.Repositories;
 
 namespace PessoaService.Application.Features.Pessoas.CriarPessoa;
 
-public sealed class CriarPessoaHandler: IRequestHandler<CriarPessoaCommand, Unit>
+public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository) : IRequestHandler<CriarPessoaCommand, Guid>
 {
-    public async Task<Unit> Handle(CriarPessoaCommand command, CancellationToken cancellationToken = default)
+    private readonly IPessoaRepository _pessoaRepository = pessoaRepository;
+
+    public async Task<Guid> Handle(CriarPessoaCommand command, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(command);
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (string.IsNullOrWhiteSpace(command.Nome))
-            throw new ArgumentException("O nome da pessoa e obrigatorio.", nameof(command));
+        var pessoa = PessoaMapper.Parse(command);
 
-        if (string.IsNullOrWhiteSpace(command.Email))
-            throw new ArgumentException("O email da pessoa e obrigatorio.", nameof(command));
+        await _pessoaRepository.AdicionarAsync(pessoa);
 
-        if (string.IsNullOrWhiteSpace(command.Telefone))
-            throw new ArgumentException("O telefone da pessoa e obrigatorio.", nameof(command));
-
-        
-
-        return Unit.Value;
+        return pessoa.Id;
     }
 }

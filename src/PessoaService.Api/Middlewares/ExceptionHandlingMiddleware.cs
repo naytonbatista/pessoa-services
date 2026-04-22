@@ -1,5 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using PessoaService.Domain.Exceptions;
 
 namespace pessoa_service.Middlewares;
 
@@ -21,6 +22,22 @@ public class ExceptionHandlingMiddleware
         try
         {
             await _next(context);
+        }
+        catch (DomainException domainException)
+        {
+            _logger.LogWarning(domainException, "Ocorreu um erro de domínio.");
+
+            var problemDetails = new ProblemDetails
+            {
+                Status = (int)HttpStatusCode.BadRequest,
+                Title = "Erro de domínio",
+                Detail = domainException.Message
+            };
+
+            context.Response.StatusCode = problemDetails.Status.Value;
+            context.Response.ContentType = "application/problem+json";
+
+            await context.Response.WriteAsJsonAsync(problemDetails);
         }
         catch (Exception exception)
         {

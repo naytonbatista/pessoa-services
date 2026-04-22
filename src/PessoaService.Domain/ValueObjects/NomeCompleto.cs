@@ -1,3 +1,5 @@
+using PessoaService.Domain.Exceptions;
+
 namespace PessoaService.Domain.ValueObjects;
 
 public record NomeCompleto
@@ -7,13 +9,13 @@ public record NomeCompleto
     public NomeCompleto(string valor)
     {
         if (string.IsNullOrWhiteSpace(valor))
-            throw new ArgumentException("O nome completo não pode ser vazio.");
+            throw new DomainException("O nome completo não pode ser vazio.");
 
         if (valor.Trim().Length < 3)
-            throw new ArgumentException("O nome completo deve ter pelo menos 3 caracteres.");
+            throw new DomainException("O nome completo deve ter pelo menos 3 caracteres.");
 
         if (!valor.Contains(" "))
-            throw new ArgumentException("Informe o nome completo, incluindo pelo menos um sobrenome.");
+            throw new DomainException("Informe o nome completo, incluindo pelo menos um sobrenome.");
 
 
         Valor = valor.Trim();

@@ -1,3 +1,5 @@
+using PessoaService.Domain.Exceptions;
+
 namespace PessoaService.Domain.ValueObjects;
 
 public record  Nacionalidade
@@ -7,7 +9,7 @@ public record  Nacionalidade
     public Nacionalidade(string valor)
     {
         if (string.IsNullOrWhiteSpace(valor))
-            throw new ArgumentException("A nacionalidade não pode ser vazio.");
+            throw new DomainException("A nacionalidade não pode ser vazio.");
 
         var valorNormalizado = valor.Trim().ToUpper();
 

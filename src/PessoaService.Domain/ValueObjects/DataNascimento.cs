@@ -1,3 +1,5 @@
+using PessoaService.Domain.Exceptions;
+
 namespace PessoaService.Domain.ValueObjects;
 
 public record DataNascimento
@@ -7,13 +9,13 @@ public record DataNascimento
     public DataNascimento(DateTime valor)
     {
         if (valor == default)
-            throw new ArgumentException("Data de nascimento inválida.");
+            throw new DomainException("Data de nascimento inválida.");
 
         if (valor > DateTime.UtcNow)
-            throw new ArgumentException("A data de nascimento não pode ser no futuro.");
+            throw new DomainException("A data de nascimento não pode ser no futuro.");
 
         if (valor < DateTime.UtcNow.AddYears(-150))
-            throw new ArgumentException("A data de nascimento não pode ser há mais de 150 anos.");
+            throw new DomainException("A data de nascimento não pode ser há mais de 150 anos.");
 
         Valor = valor.Date;
     }

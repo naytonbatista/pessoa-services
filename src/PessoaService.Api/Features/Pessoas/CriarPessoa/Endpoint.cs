@@ -14,7 +14,7 @@ public class Endpoint : IEndpoint
 
             await sender.Send(command, cancellationToken);
 
-            return Results.Ok();
+            return Results.Ok("Pessoa criada com sucesso.");
         });
     }
 }

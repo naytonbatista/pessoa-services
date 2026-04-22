@@ -1,3 +1,5 @@
+using PessoaService.Domain.Exceptions;
+
 namespace PessoaService.Domain.ValueObjects;
 
 public record CPF
@@ -7,15 +9,15 @@ public record CPF
     public CPF(string valor)
     {
         if (string.IsNullOrWhiteSpace(valor))
-            throw new ArgumentException("O CPF não pode ser vazio.");
+            throw new DomainException("O CPF não pode ser vazio.");
 
         var cpfLimpo = RemoverMascara(valor);
 
         if (!CpfValido(cpfLimpo))
-            throw new ArgumentException("CPF inválido.");
+            throw new DomainException("CPF inválido.");
 
         if (cpfLimpo.Length != 11 || !cpfLimpo.All(char.IsDigit))
-            throw new ArgumentException("CPF deve conter exatamente 11 dígitos numéricos.");
+            throw new DomainException("CPF deve conter exatamente 11 dígitos numéricos.");
 
         Valor = cpfLimpo;
 

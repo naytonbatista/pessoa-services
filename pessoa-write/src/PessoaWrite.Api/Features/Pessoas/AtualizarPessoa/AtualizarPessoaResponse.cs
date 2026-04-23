@@ -2,9 +2,11 @@ namespace PessoaWrite.Features.Pessoas.AtualizarPessoa;
 
 public record AtualizarPessoaResponse(
     int Id,
-    string Nome,
-    string Email,
-    string Telefone,
-    int Idade,
-    bool Ativo
+    string NomeCompleto,
+    DateTime DataNascimento,
+    string CPF,
+    string RG,
+    string Sexo,
+    string EstadoCivil,
+    string Nacionalidade
 );

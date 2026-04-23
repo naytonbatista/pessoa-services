@@ -1,6 +1,7 @@
 using PessoaWrite.Features.Pessoas.AtualizarPessoa;
 using PessoaWrite.Features.Pessoas.CriarPessoa;
 
+using PessoaWrite.Application.Features.Pessoas.AtualizarPessoa;
 using PessoaWrite.Application.Features.Pessoas.CriarPessoa;
 
 namespace PessoaWrite.Features.Pessoas
@@ -26,5 +27,16 @@ namespace PessoaWrite.Features.Pessoas
                 command.Sexo,
                 command.EstadoCivil,
                 command.Nacionalidade);
+
+        public static AtualizarPessoaCommand Parse(Guid id, AtualizarPessoaRequest request) =>
+            new(
+                id,
+                request.NomeCompleto,
+                request.DataNascimento,
+                request.CPF,
+                request.RG,
+                request.Sexo,
+                request.EstadoCivil,
+                request.Nacionalidade);
     }
 }

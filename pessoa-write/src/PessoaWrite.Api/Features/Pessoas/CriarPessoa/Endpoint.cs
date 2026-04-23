@@ -12,9 +12,9 @@ public class Endpoint : IEndpoint
         {
             var command = PessoaMapper.Parse(request);
 
-            await sender.Send(command, cancellationToken);
+            var id = await sender.Send(command, cancellationToken);
 
-            return Results.Ok("Pessoa criada com sucesso.");
+            return Results.Created($"/pessoas/{id}", new { Id = id });
         });
     }
 }

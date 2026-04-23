@@ -1,5 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using PessoaWrite.Application.Exceptions;
 using PessoaWrite.Domain.Exceptions;
 
 namespace PessoaWrite.Middlewares;
@@ -22,6 +23,22 @@ public class ExceptionHandlingMiddleware
         try
         {
             await _next(context);
+        }
+        catch (ValidationException validationException)
+        {
+            _logger.LogWarning(validationException, "Ocorreu um erro de validação.");
+
+            var problemDetails = new ValidationProblemDetails(validationException.Errors)
+            {
+                Status = (int)HttpStatusCode.BadRequest,
+                Title = "Erro de validação",
+                Detail = "Um ou mais erros de validação ocorreram. Verifique os detalhes para mais informações."
+            };
+
+            context.Response.StatusCode = problemDetails.Status.Value;
+            context.Response.ContentType = "application/problem+json";
+
+            await context.Response.WriteAsJsonAsync(problemDetails);
         }
         catch (DomainException domainException)
         {

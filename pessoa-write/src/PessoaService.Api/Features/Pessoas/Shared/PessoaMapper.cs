@@ -1,7 +1,6 @@
 using pessoa_service.Features.Pessoas.AtualizarPessoa;
 using pessoa_service.Features.Pessoas.CriarPessoa;
-using pessoa_service.Features.Pessoas.ObterPessoaPorId;
-using pessoa_service.Features.Pessoas.ObterPessoas;
+
 using PessoaService.Application.Features.Pessoas.CriarPessoa;
 
 namespace pessoa_service.Features.Pessoas

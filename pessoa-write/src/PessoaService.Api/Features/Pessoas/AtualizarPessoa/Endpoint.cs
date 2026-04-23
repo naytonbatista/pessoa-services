@@ -8,7 +8,8 @@ public class Endpoint : IEndpoint
     {
         app.MapPut("/pessoas/{id:int}", async (int id, AtualizarPessoaRequest request) =>
         {
-            return Results.Ok();
+            await Task.Delay(100); // Simula uma operação assíncrona, como acesso a banco de dados
+            return  Results.Ok("Pessoa atualizada com sucesso.");
         });
     }
 }

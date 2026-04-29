@@ -19,6 +19,8 @@ public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository, Criar
 
         await _pessoaRepository.AdicionarAsync(pessoa);
 
+        
+
         return pessoa.Id;
     }
 }

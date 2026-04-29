@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PessoaWrite.Application.Interfaces.Repositories;
+using PessoaWrite.Application.Abstractions.Persistence;
 using PessoaWrite.Domain.Entities;
 using PessoaWrite.Infrastructure.Persistence.Context;
 namespace PessoaWrite.Infrastructure.Persistence.Repositories;

@@ -1,5 +1,5 @@
 using MediatR;
-using PessoaWrite.Application.Interfaces.Repositories;
+using PessoaWrite.Application.Abstractions.Persistence;
 
 namespace PessoaWrite.Application.Features.Pessoas.CriarPessoa;
 

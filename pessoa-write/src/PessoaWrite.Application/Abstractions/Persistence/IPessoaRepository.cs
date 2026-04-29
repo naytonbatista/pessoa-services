@@ -1,6 +1,6 @@
 using PessoaWrite.Domain.Entities;
 
-namespace PessoaWrite.Application.Interfaces.Repositories;
+namespace PessoaWrite.Application.Abstractions.Persistence;
 
 public interface IPessoaRepository
 {

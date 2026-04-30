@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PessoaWrite.Application.Abstractions.Persistence;
-using PessoaWrite.Domain.Entities;
 using PessoaWrite.Infrastructure.Persistence.Context;
+using PessoaEntity = PessoaWrite.Domain.Entities.Pessoa;
 namespace PessoaWrite.Infrastructure.Persistence.Repositories;
 
 
@@ -14,23 +14,23 @@ public class PessoaRepository : IPessoaRepository
         _context = context;
     }
 
-    public async Task AdicionarAsync(Pessoa pessoa, CancellationToken cancellationToken = default)
+    public async Task AdicionarAsync(PessoaEntity pessoa, CancellationToken cancellationToken = default)
     {
         await _context.Pessoas.AddAsync(pessoa, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<Pessoa?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<PessoaEntity?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await _context.Pessoas.FindAsync(id, cancellationToken);
     }
 
-    public async Task<IEnumerable<Pessoa>> ObterTodosAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<PessoaEntity>> ObterTodosAsync(CancellationToken cancellationToken = default)
     {
         return await _context.Pessoas.ToListAsync(cancellationToken);
     }
 
-    public async Task AtualizarAsync(Pessoa pessoa, CancellationToken cancellationToken = default)
+    public async Task AtualizarAsync(PessoaEntity pessoa, CancellationToken cancellationToken = default)
     {
         _context.Pessoas.Update(pessoa);
         await _context.SaveChangesAsync(cancellationToken);

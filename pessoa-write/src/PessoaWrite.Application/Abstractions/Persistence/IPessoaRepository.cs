@@ -1,12 +1,12 @@
-using PessoaWrite.Domain.Entities;
+using PessoaEntity = PessoaWrite.Domain.Entities.Pessoa;
 
 namespace PessoaWrite.Application.Abstractions.Persistence;
 
 public interface IPessoaRepository
 {
-    Task AdicionarAsync(Pessoa pessoa, CancellationToken cancellationToken = default);
-    Task<Pessoa?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
-    Task<IEnumerable<Pessoa>> ObterTodosAsync(CancellationToken cancellationToken = default);
-    Task AtualizarAsync(Pessoa pessoa, CancellationToken cancellationToken = default);
+    Task AdicionarAsync(PessoaEntity pessoa, CancellationToken cancellationToken = default);
+    Task<PessoaEntity?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<IEnumerable<PessoaEntity>> ObterTodosAsync(CancellationToken cancellationToken = default);
+    Task AtualizarAsync(PessoaEntity pessoa, CancellationToken cancellationToken = default);
     Task ExcluirAsync(Guid id, CancellationToken cancellationToken = default);
 }

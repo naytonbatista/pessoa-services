@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PessoaWrite.Domain.Entities;
 using PessoaWrite.Domain.ValueObjects;
+using PessoaEntity = PessoaWrite.Domain.Entities.Pessoa;
 
 namespace PessoaWrite.Infrastructure.Persistence.Mappings;
 
-public sealed class PessoaMapping : IEntityTypeConfiguration<Pessoa>
+public sealed class PessoaMapping : IEntityTypeConfiguration<PessoaEntity>
 {
     private static DateTime? ToProvider(DataAtualizacao? dataAtualizacao) =>
         dataAtualizacao is { } valor ? valor.Valor : null;
@@ -14,7 +14,7 @@ public sealed class PessoaMapping : IEntityTypeConfiguration<Pessoa>
     private static DataAtualizacao? FromProvider(DateTime? valor) =>
         valor.HasValue ? new DataAtualizacao(valor.Value) : null;
 
-    public void Configure(EntityTypeBuilder<Pessoa> builder)
+    public void Configure(EntityTypeBuilder<PessoaEntity> builder)
     {
         var dataAtualizacaoConverter = new ValueConverter<DataAtualizacao?, DateTime?>(
             dataAtualizacao => ToProvider(dataAtualizacao),

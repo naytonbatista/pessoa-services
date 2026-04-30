@@ -2,10 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using PessoaWrite.Infrastructure.Persistence.Context;
-using PessoaWrite.Application.Interfaces.Repositories;
+using PessoaWrite.Application.Abstractions.Messaging;
+using PessoaWrite.Application.Abstractions.Persistence;
+using PessoaWrite.Infrastructure.Messaging.Publishers;
 using PessoaWrite.Infrastructure.Persistence.Repositories;
 using MassTransit;
-using Microsoft.Extensions.Logging;
 
 
 namespace PessoaWrite.Infrastructure.Extensions
@@ -17,6 +18,7 @@ namespace PessoaWrite.Infrastructure.Extensions
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IPessoaRepository, PessoaRepository>();
+            services.AddScoped<IEventPublisher, MassTransitEventPublisher>();
 
             services.AddMassMessageBus(configuration);
 

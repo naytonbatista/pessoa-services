@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\building-blocks\Pessoa.Contracts\Pessoa.Contracts.csproj" />
     <ProjectReference Include="..\PessoaWrite.Domain\PessoaWrite.Domain.csproj" />
   </ItemGroup>
 

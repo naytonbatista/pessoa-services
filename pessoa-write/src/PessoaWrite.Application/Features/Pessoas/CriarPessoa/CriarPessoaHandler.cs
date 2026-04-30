@@ -1,12 +1,14 @@
 using MediatR;
+using PessoaWrite.Application.Abstractions.Messaging;
 using PessoaWrite.Application.Abstractions.Persistence;
 
 namespace PessoaWrite.Application.Features.Pessoas.CriarPessoa;
 
-public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository, CriarPessoaCommandValidator validator) : IRequestHandler<CriarPessoaCommand, Guid>
+public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository, CriarPessoaCommandValidator validator, IEventPublisher publisher) : IRequestHandler<CriarPessoaCommand, Guid>
 {
     private readonly IPessoaRepository _pessoaRepository = pessoaRepository;
     private readonly CriarPessoaCommandValidator _validator = validator;
+    private readonly IEventPublisher _publisher = publisher;
 
     public async Task<Guid> Handle(CriarPessoaCommand command, CancellationToken cancellationToken = default)
     {
@@ -19,7 +21,7 @@ public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository, Criar
 
         await _pessoaRepository.AdicionarAsync(pessoa);
 
-        
+        await _publisher.PublishAsync(PessoaMapper.ToMessage(pessoa), cancellationToken);
 
         return pessoa.Id;
     }

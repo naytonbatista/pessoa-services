@@ -18,7 +18,7 @@ public class PessoaCriadaConsumer : IConsumer<PessoaCriadaMessage>
     {
         var message = context.Message;
 
-        _logger.LogInformation("Received PessoaCriada event: {Message}", message);
+        _logger.LogInformation("Received PessoaCriada event: {Message} at {DateTime}", message, DateTime.UtcNow);
 
         var pessoaReadModel = message.ToReadModel();
 

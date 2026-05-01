@@ -13,6 +13,7 @@ namespace PessoaRead.Infrastructure.Extensions
         {
 
             services.AddMongoDb(configuration);
+            services.AddRabbitMq(configuration);
 
         }
 

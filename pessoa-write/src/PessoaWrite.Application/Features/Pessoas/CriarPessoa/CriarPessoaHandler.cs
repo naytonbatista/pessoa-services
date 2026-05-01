@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.Extensions.Logging;
 using PessoaWrite.Application.Abstractions.Messaging;
 using PessoaWrite.Application.Abstractions.Persistence;
 
@@ -9,6 +10,7 @@ public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository, Criar
     private readonly IPessoaRepository _pessoaRepository = pessoaRepository;
     private readonly CriarPessoaCommandValidator _validator = validator;
     private readonly IEventPublisher _publisher = publisher;
+
 
     public async Task<Guid> Handle(CriarPessoaCommand command, CancellationToken cancellationToken = default)
     {
@@ -21,6 +23,7 @@ public sealed class CriarPessoaHandler(IPessoaRepository pessoaRepository, Criar
 
         await _pessoaRepository.AdicionarAsync(pessoa);
 
+        Console.WriteLine($"Event dispatched at {DateTime.UtcNow}");
         await _publisher.PublishAsync(PessoaMapper.ToMessage(pessoa), cancellationToken);
 
         return pessoa.Id;

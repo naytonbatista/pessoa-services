@@ -45,7 +45,15 @@ namespace PessoaWrite.Infrastructure.Extensions
                     {
                         h.Username(rabbitMqOptions.User);
                         h.Password(rabbitMqOptions.Pass);
+
+                        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+                        {
+                            h.UseSsl(s => { s.Protocol = System.Security.Authentication.SslProtocols.Tls12; });
+
+                        }
+
                     });
+
 
                 });
             });

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
-using PessoaRead.Infrastructure.Persistence.Models;
 
-namespace PessoaRead.Infrastructure.Persistence;
+
+namespace PessoaRead.Infrastructure.Persistence.Models;
 public class PessoaReadDbContext(DbContextOptions<PessoaReadDbContext> options) : DbContext(options)
 {
     public DbSet<PessoaReadModel> Pessoas => Set<PessoaReadModel>();

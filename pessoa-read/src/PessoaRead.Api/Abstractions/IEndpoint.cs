@@ -1,4 +1,4 @@
-namespace PessoaRead.Abstractions;
+namespace PessoaRead.Api.Abstractions;
 
 public interface IEndpoint
 {

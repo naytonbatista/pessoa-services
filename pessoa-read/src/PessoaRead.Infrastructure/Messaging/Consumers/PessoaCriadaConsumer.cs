@@ -1,7 +1,7 @@
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Pessoa.Contracts.Pessoa;
-using PessoaRead.Infrastructure.Persistence;
+using PessoaRead.Infrastructure.Persistence.Models;
 
 public class PessoaCriadaConsumer : IConsumer<PessoaCriadaMessage>
 {

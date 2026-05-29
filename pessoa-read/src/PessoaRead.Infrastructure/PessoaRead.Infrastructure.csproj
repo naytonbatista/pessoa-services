@@ -21,6 +21,7 @@
   </ItemGroup>
 
    <ItemGroup>
+      <ProjectReference Include="..\PessoaRead.Application\PessoaRead.Application.csproj" />
       <ProjectReference Include="..\..\..\building-blocks\Pessoa.Contracts\Pessoa.Contracts.csproj" />
    </ItemGroup>
 </Project>

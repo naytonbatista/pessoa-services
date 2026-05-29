@@ -8,10 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.13" />
+    <PackageReference Include="Scrutor" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PessoaRead.Application\PessoaRead.Application.csproj" />
     <ProjectReference Include="..\PessoaRead.Infrastructure\PessoaRead.Infrastructure.csproj" />
+
   </ItemGroup>
 
 </Project>
